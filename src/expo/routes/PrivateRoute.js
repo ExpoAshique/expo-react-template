@@ -11,18 +11,20 @@ const PrivateRoute = ({
   ...rest
 }) => {
   return isAuthenticated ? (
-    <React.Fragment>
+    <div className="wrapper">
       <Route
         {...rest}
         component={props => (
           <React.Fragment>
             <Header />
-              <Sidebar/>
-            <Component {...props} />
+            <Sidebar />
+            <section className="section-container">
+              <Component {...props} />
+            </section>
           </React.Fragment>
         )}
       />
-    </React.Fragment>
+    </div>
   ) : (
       <Redirect to="/login" />
     )

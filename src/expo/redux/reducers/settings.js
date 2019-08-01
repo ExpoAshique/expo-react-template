@@ -14,7 +14,7 @@ const initialSettings = {
   /* Show sidebar scrollbar (dont' hide it) */
   asideScrollbar: false,
   /* Sidebar collapsed with big icons and text */
-  isCollapsedText: true,
+  isCollapsedText: false,
   /* Toggle for the offsidebar */
   offsidebarOpen: false,
   /* Toggle for the sidebar offcanvas (mobile) */

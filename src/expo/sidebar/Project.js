@@ -8,17 +8,20 @@ export const baseUrl = '/app/project'
 
 export const Sidebar = [
   {
-    heading: 'My Project',
-    translate: 'sidebar.heading.HEADER',
-  },
-  {
     heading: 'My Issues',
     translate: 'sidebar.heading.COMPONENTS',
   },
   {
     name: 'Issues',
     icon: 'icon-chemistry',
-    path: '/issues',
+    path: '#',
+    translate: 'sidebar.nav.element.ELEMENTS',
+
+  },
+  {
+    name: 'Issues',
+    icon: 'icon-chemistry',
+    path: '#',
     translate: 'sidebar.nav.element.ELEMENTS',
     submenu: [
       {
