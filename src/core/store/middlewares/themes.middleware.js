@@ -1,4 +1,4 @@
-import { CHANGE_THEME } from '../../../xerp/redux'
+import { CHANGE_THEME } from '../../../expo/redux'
 
 const LINK_ID = 'theme-stylesheet'
 

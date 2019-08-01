@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import middlewares from './middlewares/middlewares'
 import { updateTheme } from './middlewares/themes.middleware.js'
 import { persistedState, saveState } from './persisted.store.js'
-import reducers from '../../xerp/redux'
+import reducers from '../../expo/redux'
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose,
   middlewareEnhancer = applyMiddleware(...middlewares, thunk),
@@ -19,8 +19,8 @@ const store = createStore(
 if (process.env.NODE_ENV !== 'production' && module.hot) {
   // Note! Make sure this path matches your rootReducer import exactly
   // Does not play well with "NODE_PATH" aliasing.
-  module.hot.accept('../../xerp/redux', () => {
-    const newRootReducer = require('../../xerp/redux').default
+  module.hot.accept('../../expo/redux', () => {
+    const newRootReducer = require('../../expo/redux').default
     store.replaceReducer(newRootReducer)
   })
 }

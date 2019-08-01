@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './expo'
 import * as serviceWorker from './core/base/serviceWorker'
 
 const root = document.getElementById('root')
@@ -11,8 +11,8 @@ const render = Component => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./App', () => {
-    const NextApp = require('./App').default
+  module.hot.accept('./expo', () => {
+    const NextApp = require('./expo').default
     render(NextApp)
   })
 }
