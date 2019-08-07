@@ -9,6 +9,7 @@ import {
 import {Project} from '../sidebar'
 import {ProjectDashboard} from '../apps'
 import TableComponent from "../apps/TableComponent/TableComponent";
+import DropdownComponent from "../apps/DropDownComponent/DropdownComponent";
 
 const ProjectSidebar = Project.Sidebar || [];
 let baseUrl = '';
@@ -79,6 +80,11 @@ export const Private = [
     {
         path: '/table',
         component: TableComponent,
+        exact: true
+    },
+    {
+        path: '/dropdown',
+        component: DropdownComponent,
         exact: true
     },
 ];
