@@ -22,22 +22,22 @@ export const Sidebar = [
   {
     name: 'Components',
     icon: 'icon-chemistry',
-    path: '#',
+    path: '/',
     translate: 'sidebar.nav.element.ELEMENTS',
     submenu: [
       {
         name: 'Table',
-        path: '/table',
+        path: 'table',
         translate: 'sidebar.nav.element.BUTTON',
       },
       {
         name: 'All issues',
-        path: '/all-issues',
+        path: 'all-issues',
         translate: 'sidebar.nav.element.NOTIFICATION',
       },
       {
         name: 'Done issues',
-        path: '/done-issues',
+        path: 'done-issues',
       },
     ],
   },

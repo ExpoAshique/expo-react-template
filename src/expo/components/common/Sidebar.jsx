@@ -24,7 +24,7 @@ const SidebarItem = ({ item, path, handler }) => (
     e.preventDefault();
     handler && handler()
   }}>
-    <NavLink to={"#" /* baseUrl + path */} title={item.name} exact>
+    <NavLink to={ baseUrl + path} title={item.name} exact>
       {item.label && (
         <Badge tag="div" className="float-right" color={item.label.color}>
           {item.label.value}
