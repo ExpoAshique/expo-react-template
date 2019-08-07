@@ -2,9 +2,10 @@
 
 export const PrivateRoot = {
   dashboard: '/dashboard',
+  table: '/table',
 }
 
-export const baseUrl = '/app/project'
+export const baseUrl = '/'
 
 export const Sidebar = [
   {
@@ -19,14 +20,14 @@ export const Sidebar = [
 
   },
   {
-    name: 'Issues',
+    name: 'Components',
     icon: 'icon-chemistry',
     path: '#',
     translate: 'sidebar.nav.element.ELEMENTS',
     submenu: [
       {
-        name: 'My open issues',
-        path: '/my-open-issues',
+        name: 'Table',
+        path: '/table',
         translate: 'sidebar.nav.element.BUTTON',
       },
       {

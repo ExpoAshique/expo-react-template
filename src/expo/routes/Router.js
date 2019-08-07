@@ -8,6 +8,7 @@ import {
 // import {SingleProject } from '../apps'
 import {Project} from '../sidebar'
 import {ProjectDashboard} from '../apps'
+import TableComponent from "../apps/TableComponent/TableComponent";
 
 const ProjectSidebar = Project.Sidebar || [];
 let baseUrl = '';
@@ -74,5 +75,10 @@ export const Private = [
         path: '/dashboard',
         component: ProjectDashboard,
         exact: true
-    }
+    },
+    {
+        path: '/table',
+        component: TableComponent,
+        exact: true
+    },
 ];
