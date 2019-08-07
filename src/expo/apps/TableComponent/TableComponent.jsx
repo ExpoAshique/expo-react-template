@@ -1,7 +1,8 @@
 import React from 'react'
 import {Row, Col, Table, ToastHeader} from 'react-bootstrap'
 import {DBCard, PageWrapper} from '../../components';
-
+import { allTableData } from '../../../expo/redux/actions'
+import { connect } from 'react-redux'
 
 class TableComponent extends React.Component {
     render() {
@@ -80,4 +81,14 @@ class TableComponent extends React.Component {
 }
 
 
-export default TableComponent
+// export default TableComponent
+
+const mapStateToProps = state => ({
+  // tasks: state.task.tasks ? state.task.tasks.results : [],
+})
+
+const mapDispatchToProps = dispatch => ({
+  allTableData:dispatch(allTableData())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(TableComponent)

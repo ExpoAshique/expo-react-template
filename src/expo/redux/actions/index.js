@@ -1,3 +1,5 @@
 export * from './auth'
 export * from './themes'
 export * from './settings'
+export * from './table'
+export * from './apps'

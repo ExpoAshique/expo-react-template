@@ -5,5 +5,6 @@ export const baseURL = url + '/api/v1'
 export const endpoint = {
   signin: '/login/',
   signup: '/registration',
-  active: '/active-account'
+  active: '/active-account',
+  all_article_data: '/article-full'
 }
