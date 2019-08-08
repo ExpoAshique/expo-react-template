@@ -4,3 +4,4 @@
 export * from './Dashboard'
 export * from './TableComponent'
 export * from './DropDownComponent'
+export * from './DataTable'

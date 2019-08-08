@@ -53,14 +53,13 @@ export const ActionCreator = (type, payload) => ({
 
 
 export const allTableData = () => {
-  console.log('ffffffffffffff')
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
         const url =  endpoint.all_article_data;
         api.get(url).then(
           res => {
             dispatch(ActionCreator(TABLE_DATA_LIST, res))
-            resolve()
+            resolve(res)
           },
           err => {
             console.log(err)
@@ -72,3 +71,14 @@ export const allTableData = () => {
     })
   }
 }
+
+
+
+
+// export const allTableData = () => {
+//     const url =  endpoint.all_article_data;
+//      const output = api.get(url).then(
+//           res => res.data
+//         )
+//     return {type:TABLE_DATA_LIST, payload:output}
+// }

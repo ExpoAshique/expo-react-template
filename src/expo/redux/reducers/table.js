@@ -8,9 +8,9 @@ const TableReducer = (state = initialState, action) => {
       return (state = {
         ...state,
         ...action.payload,
+        // allTableData: action.payload
       })
     }
-
     default:
       return state
   }
