@@ -11,7 +11,8 @@ import {
 import { connect } from 'react-redux'
 
 import { ToggleFullscreen } from '../../container'
-import { toggleSetting } from '../../redux'
+import { toggleSetting, LogoutUser } from '../../redux'
+import { Button, Icon } from 'antd';
 
 class AuthHeader extends React.Component {
 
@@ -195,6 +196,17 @@ class AuthHeader extends React.Component {
             </a>
           </li>
           {/* END Offsidebar menu */}
+
+          {/* START Logout button */}
+
+           <li className="nav-item d-none d-md-block">
+            <a className="nav-link" onClick={() => this.props.LogoutUser()}>
+              <em className="icon-logout" />
+            </a>
+          </li>
+          {/* END Logout menu */}
+
+
         </ul>
         {/* END Right Navbar */}
 
@@ -226,6 +238,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
   toggleSetting: payload => dispatch(toggleSetting(payload)),
+     LogoutUser: () => dispatch(LogoutUser()),
 })
 
 export default connect(

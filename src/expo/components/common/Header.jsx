@@ -53,7 +53,7 @@ class Header extends Component {
             <Link className="navbar-brand" to="/app">
               <div className="brand-logo">
                 {/* <img className="img-fluid" src="/img/logo.png" alt="xERP" /> */}
-                <span className="text-white">xERP</span>
+                <span className="text-white">Sample Project</span>
               </div>
               <div className="brand-logo-collapsed">
                 <img

@@ -52,11 +52,11 @@ export const ActionCreator = (type, payload) => ({
 
 
 
-export const allTableData = () => {
+export const allTableData = (payload) => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
         const url =  endpoint.all_article_data;
-        api.get(url).then(
+        api.get(url+'?page=1&page_size=99999').then(
           res => {
             dispatch(ActionCreator(TABLE_DATA_LIST, res))
             resolve(res)
