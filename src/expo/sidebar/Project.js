@@ -1,13 +1,14 @@
-
-
-export const PrivateRoot = {
-  dashboard: '/dashboard',
-  table: '/table',
-}
-
-export const baseUrl = '/'
-
 export const Sidebar = [
+  {
+    heading: 'My Dashboard',
+    translate: 'sidebar.heading.COMPONENTS',
+  },
+  {
+    name: 'Dashboard',
+    icon: 'icon-chemistry',
+    path: 'dashboard',
+    translate: 'sidebar.nav.element.ELEMENTS',
+  },
   {
     heading: 'My Issues',
     translate: 'sidebar.heading.COMPONENTS',
@@ -15,9 +16,8 @@ export const Sidebar = [
   {
     name: 'Issues',
     icon: 'icon-chemistry',
-    path: '#',
+    path: 'issues',
     translate: 'sidebar.nav.element.ELEMENTS',
-
   },
   {
     name: 'Components',

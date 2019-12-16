@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-import { Header } from '../components';
-import Sidebar from "../components/common/Sidebar";
 
 const PrivateRoute = ({
   isAuthenticated,
@@ -11,23 +9,17 @@ const PrivateRoute = ({
   ...rest
 }) => {
   return isAuthenticated ? (
-    <div className="wrapper">
-      <Route
-        {...rest}
-        component={props => (
-          <React.Fragment>
-            <Header />
-            <Sidebar />
-            <section className="section-container">
-              <Component {...props} />
-            </section>
-          </React.Fragment>
-        )}
-      />
-    </div>
+    <Route
+      {...rest}
+      component={props => (
+        <React.Fragment>
+          <Component {...props} />
+        </React.Fragment>
+      )}
+    />
   ) : (
-      <Redirect to="/login" />
-    )
+    <Redirect to="/" />
+  )
 }
 const mapStateToProps = state => ({
   isAuthenticated: state.auth.token,

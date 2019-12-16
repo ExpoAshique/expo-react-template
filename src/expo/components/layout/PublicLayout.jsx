@@ -1,11 +1,9 @@
 import React from 'react';
 
-const BasePage = props =>(
+const PublicLayout = props =>(
     <div className="wrapper">
         { props.children }
     </div>
 )
 
-export { 
-    BasePage 
-}
+export default PublicLayout

@@ -1,17 +1,12 @@
-import {
-    TABLE_DATA_LIST,
-} from '../constants'
-import {baseURL, endpoint} from '../../../config'
+import { TABLE_DATA_LIST } from '../constants'
+import { endpoint } from '../../../config'
 import api from '../../../core/api'
 import { setErrMsg } from '../../redux/actions'
-
-
 
 export const ActionCreator = (type, payload) => ({
   type,
   payload,
 })
-
 
 // export const CreateProject = payload => {
 //   return dispatch => {
@@ -31,8 +26,6 @@ export const ActionCreator = (type, payload) => ({
 //   }
 // }
 
-
-
 // export const getProject = id => {
 //   return dispatch => {
 //     return new Promise((resolve, reject) => {
@@ -50,30 +43,23 @@ export const ActionCreator = (type, payload) => ({
 //   }
 // }
 
-
-
-export const allTableData = (payload) => {
+export const allTableData = payload => {
   return (dispatch, getState) => {
     return new Promise((resolve, reject) => {
-        const url =  endpoint.all_article_data;
-        api.get(url+'?page=1&page_size=99999').then(
-          res => {
-            dispatch(ActionCreator(TABLE_DATA_LIST, res))
-            resolve(res)
-          },
-          err => {
-            console.log(err)
-            reject(setErrMsg(err))
-          }
-        )
-
-
+      const url = endpoint.all_article_data
+      api.get(url + '?page=1&page_size=99999').then(
+        res => {
+          dispatch(ActionCreator(TABLE_DATA_LIST, res))
+          resolve(res)
+        },
+        err => {
+          console.log(err)
+          reject(setErrMsg(err))
+        }
+      )
     })
   }
 }
-
-
-
 
 // export const allTableData = () => {
 //     const url =  endpoint.all_article_data;

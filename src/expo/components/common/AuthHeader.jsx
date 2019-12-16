@@ -12,7 +12,6 @@ import { connect } from 'react-redux'
 
 import { ToggleFullscreen } from '../../container'
 import { toggleSetting, LogoutUser } from '../../redux'
-import { Button, Icon } from 'antd';
 
 class AuthHeader extends React.Component {
 
@@ -200,9 +199,9 @@ class AuthHeader extends React.Component {
           {/* START Logout button */}
 
            <li className="nav-item d-none d-md-block">
-            <a className="nav-link" onClick={() => this.props.LogoutUser()}>
+            <div className="nav-link"  onClick={() => this.props.LogoutUser()}>
               <em className="icon-logout" />
-            </a>
+            </div>
           </li>
           {/* END Logout menu */}
 

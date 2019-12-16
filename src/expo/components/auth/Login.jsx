@@ -179,7 +179,7 @@ class Login extends React.Component {
                         <br />
                         <Form.Label>
                           <span className="text-black-50">Don't have an account?{'  '}</span>
-                          <AntdButton type="dashed" href="/register">Register Now</AntdButton>
+                          <Link type="dashed" to="/register">Register Now</Link>
                         </Form.Label>
                         {this.state.loading && <CircleSpinner />}
                       </div>

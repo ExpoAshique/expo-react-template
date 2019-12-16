@@ -2,6 +2,7 @@ import axios from 'axios'
 import { baseURL } from '../../config'
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+axios.defaults.baseURL = baseURL;
 
 class BaseAPI {
   constructor() {
@@ -11,7 +12,7 @@ class BaseAPI {
   }
 
   callAPI = (endpoint, method = 'get', payload = {}, headers = {}) => {
-    let url = baseURL + endpoint
+    let url = endpoint
     let promise
 
     if (

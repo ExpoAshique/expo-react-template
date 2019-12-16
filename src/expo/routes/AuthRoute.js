@@ -1,7 +1,6 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Redirect } from 'react-router-dom'
-import { BasePage, PageLoader } from '../components';
 
 // Dummy Token
 
@@ -12,19 +11,13 @@ const AuthRoute = ({ isAuthenticated, component: Component, ...rest }) =>
     <Route
       {...rest}
       component={props => {
-        return (
-          <BasePage>
-            <Suspense fallback={<PageLoader />}>
-              <Component {...props} />
-            </Suspense>
-          </BasePage>
-        )
+        return <Component {...props} />
       }}
     />
   )
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.token,
+  isAuthenticated: !!state.auth.token,
 })
 
 export default connect(mapStateToProps)(AuthRoute)

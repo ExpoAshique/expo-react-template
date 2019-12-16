@@ -1,2 +1,1 @@
-export { default as RootRouter } from './RootRouter';
-export { history } from './RootRouter'
+export { default as AppRouter, history } from './AppRouter';

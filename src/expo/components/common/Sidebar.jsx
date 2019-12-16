@@ -8,7 +8,6 @@ import SidebarUserBlock from './SidebarUserBlock'
 import { SidebarRun } from '../../container';
 import { toggleSetting } from '../../redux';
 import { Project } from '../../sidebar'
-const baseUrl = Project.baseUrl;
 const ProjectSidebar = Project.Sidebar;
 
 /** Component to display headings on sidebar */
@@ -24,7 +23,7 @@ const SidebarItem = ({ item, path, handler }) => (
     e.preventDefault();
     handler && handler()
   }}>
-    <NavLink to={ baseUrl + path} title={item.name} exact>
+    <NavLink to={ path} title={item.name} exact>
       {item.label && (
         <Badge tag="div" className="float-right" color={item.label.color}>
           {item.label.value}

@@ -22,6 +22,7 @@ export const persistedState = (() => {
         if (rawState === null) return undefined;
         const state = JSON.parse(rawState);
         callMiddlewares(state);
+        state.auth.token = 'token something';
         return state;
     } catch (err) {
         return undefined;

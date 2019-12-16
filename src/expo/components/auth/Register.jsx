@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import validator from 'validator'
 import { SignUpUser } from '../../redux'
-import {Input} from 'reactstrap'
-import { Icon, Input as AntdInput, Tooltip, Select, Button as AntdButton } from 'antd'
+import { Input } from 'reactstrap'
+import { Icon, Input as AntdInput, Tooltip, Select } from 'antd'
 import { CircleSpinner } from '../../container/elements'
 
 const { TextArea } = AntdInput
@@ -45,7 +45,7 @@ class Register extends React.Component {
     phone_code: '---',
     terms_error: '',
     response_errors: false,
-    general_error: ''
+    general_error: '',
   }
 
   componentDidMount() {
@@ -170,24 +170,21 @@ class Register extends React.Component {
     const { repassword } = this.state
     await this.setState({
       repassword_error:
-        repassword === this.state.password
-          ? null
-          : "Password didn't match!"
+        repassword === this.state.password ? null : "Password didn't match!",
     })
     this.btnEnable()
   }
 
-  validateTerms = async (e) => {
+  validateTerms = async e => {
     await this.setState({
-      terms_error:
-        e.target.checked
-          ? null
-          : "Please agree with terms & conditions!"
+      terms_error: e.target.checked
+        ? null
+        : 'Please agree with terms & conditions!',
     })
     this.btnEnable()
   }
 
-  onChange = async (e) => {
+  onChange = async e => {
     const field = e.target.name
     await this.setState({ [e.target.name]: e.target.value }, () => {
       switch (field) {
@@ -224,9 +221,9 @@ class Register extends React.Component {
     })
   }
 
-  onSelect = async (e) => {
+  onSelect = async e => {
     await this.setState({
-      country: e
+      country: e,
     })
     this.validateCountry()
   }
@@ -234,7 +231,7 @@ class Register extends React.Component {
   onSubmit = async e => {
     e.preventDefault()
     this.setState({
-      loading: true
+      loading: true,
     })
     const data = {
       first_name: this.state.first_name,
@@ -245,7 +242,7 @@ class Register extends React.Component {
       company_name: this.state.company_name,
       country: this.state.country,
       address: this.state.full_address,
-      postal_code: this.state.postal_code
+      postal_code: this.state.postal_code,
     }
 
     try {
@@ -256,47 +253,45 @@ class Register extends React.Component {
         email: '',
         password: '',
         success: true,
-        loading: false
+        loading: false,
       })
     } catch (e) {
       console.log(e.response.data)
       this.setState({
-        loading: false
+        loading: false,
       })
-      if (e.response.data.hasOwnProperty("email")) {
+      if (e.response.data.hasOwnProperty('email')) {
         this.setState({
           response_errors: true,
           email_error: e.response.data.email,
-          general_error: e.response.data.email
+          general_error: e.response.data.email,
         })
       }
-      if (e.response.data.hasOwnProperty("error")) {
+      if (e.response.data.hasOwnProperty('error')) {
         this.setState({
           response_errors: true,
-          general_error: e.response.data.error
+          general_error: e.response.data.error,
         })
       }
     }
   }
 
-  setSuccess = async (e) => {
+  setSuccess = async e => {
     this.setState({
-      success: false
+      success: false,
     })
   }
 
   setErrors = async () => {
     this.setState({
-      response_errors: false
+      response_errors: false,
     })
   }
 
   render() {
-    let options = (
-      Object.values(this.props.countries).map(e => {
-        return <Select.Option key={e.id}>{e.name}</Select.Option>
-      })
-    )
+    let options = Object.values(this.props.countries).map(e => {
+      return <Select.Option key={e.id}>{e.name}</Select.Option>
+    })
     return (
       <div id="formContent" className="m">
         <Container>
@@ -312,48 +307,61 @@ class Register extends React.Component {
                     <Col md={8}>
                       <Card bg="light" className="shadow-none">
                         <div className="text-center text-info">
-                          <img src="img/slider/reg.png" alt="xERP" width="100px" />
+                          <img
+                            src="img/slider/reg.png"
+                            alt="xERP"
+                            width="100px"
+                          />
                           <h4 className="text-black-50">Welcome to xERP</h4>
                         </div>
-                        {this.state.success ? <div
-                          className="alert alert-success alert-dismissible fade show"
-                          role="alert"
-                        >
-                          <strong>Registration successful!</strong> Account activation link has
-                          been sent to your email. Please activate your account to login. Thank
-                          you.
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="alert"
-                            aria-label="Close"
-                            onClick={this.setSuccess}
+                        {this.state.success ? (
+                          <div
+                            className="alert alert-success alert-dismissible fade show"
+                            role="alert"
                           >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div> : null}
-                        {this.state.response_errors ? <div
-                          className="alert alert-danger alert-dismissible fade show"
-                          role="alert"
-                        >
-                          <strong>{this.state.general_error}</strong>
-                          <button
-                            type="button"
-                            className="close"
-                            data-dismiss="alert"
-                            aria-label="Close"
-                            onClick={this.setErrors}
+                            <strong>Registration successful!</strong> Account
+                            activation link has been sent to your email. Please
+                            activate your account to login. Thank you.
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                              onClick={this.setSuccess}
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        ) : null}
+                        {this.state.response_errors ? (
+                          <div
+                            className="alert alert-danger alert-dismissible fade show"
+                            role="alert"
                           >
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div> : null}
+                            <strong>{this.state.general_error}</strong>
+                            <button
+                              type="button"
+                              className="close"
+                              data-dismiss="alert"
+                              aria-label="Close"
+                              onClick={this.setErrors}
+                            >
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        ) : null}
                         <Card.Body>
                           <Form onSubmit={this.onSubmit}>
                             <Row>
                               <Col md={8}>
                                 <FormGroup>
                                   <AntdInput
-                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    prefix={
+                                      <Icon
+                                        type="user"
+                                        style={{ color: 'rgba(0,0,0,.25)' }}
+                                      />
+                                    }
                                     size="large"
                                     placeholder="First Name*"
                                     name="first_name"
@@ -362,7 +370,10 @@ class Register extends React.Component {
                                     value={this.state.first_name}
                                     suffix={
                                       <Tooltip title="Enter your first name">
-                                        <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                        <Icon
+                                          type="info-circle"
+                                          style={{ color: 'rgba(0,0,0,.45)' }}
+                                        />
                                       </Tooltip>
                                     }
                                     autoFocus={true}
@@ -376,7 +387,12 @@ class Register extends React.Component {
                               <Col md={4}>
                                 <FormGroup>
                                   <AntdInput
-                                    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    prefix={
+                                      <Icon
+                                        type="user"
+                                        style={{ color: 'rgba(0,0,0,.25)' }}
+                                      />
+                                    }
                                     size="large"
                                     placeholder="Last Name*"
                                     name="last_name"
@@ -385,7 +401,10 @@ class Register extends React.Component {
                                     value={this.state.last_name}
                                     suffix={
                                       <Tooltip title="Enter your last name">
-                                        <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                        <Icon
+                                          type="info-circle"
+                                          style={{ color: 'rgba(0,0,0,.45)' }}
+                                        />
                                       </Tooltip>
                                     }
                                     allowClear={true}
@@ -402,12 +421,20 @@ class Register extends React.Component {
                                 <FormGroup>
                                   <AntdInput
                                     size="large"
-                                    prefix={<Icon type="trademark" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    prefix={
+                                      <Icon
+                                        type="trademark"
+                                        style={{ color: 'rgba(0,0,0,.25)' }}
+                                      />
+                                    }
                                     placeholder="Company Name*"
                                     name="company_name"
                                     suffix={
                                       <Tooltip title="Enter company title">
-                                        <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                        <Icon
+                                          type="info-circle"
+                                          style={{ color: 'rgba(0,0,0,.45)' }}
+                                        />
                                       </Tooltip>
                                     }
                                     allowClear={true}
@@ -429,7 +456,9 @@ class Register extends React.Component {
                                     placeholder="Country*"
                                     showSearch={true}
                                     filterOption={(input, option) =>
-                                      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                                      option.props.children
+                                        .toLowerCase()
+                                        .indexOf(input.toLowerCase()) >= 0
                                     }
                                     onSelect={this.onSelect}
                                     value={this.state.country}
@@ -449,7 +478,12 @@ class Register extends React.Component {
                                 <FormGroup>
                                   <AntdInput
                                     type="email"
-                                    prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    prefix={
+                                      <Icon
+                                        type="mail"
+                                        style={{ color: 'rgba(0,0,0,.25)' }}
+                                      />
+                                    }
                                     size="large"
                                     placeholder="info@example.com"
                                     name="email"
@@ -458,7 +492,10 @@ class Register extends React.Component {
                                     value={this.state.email}
                                     suffix={
                                       <Tooltip title="Enter your email address">
-                                        <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                        <Icon
+                                          type="info-circle"
+                                          style={{ color: 'rgba(0,0,0,.45)' }}
+                                        />
                                       </Tooltip>
                                     }
                                     allowClear={true}
@@ -480,7 +517,12 @@ class Register extends React.Component {
                                     <AntdInput
                                       type="text"
                                       style={{ width: '70%' }}
-                                      prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                      prefix={
+                                        <Icon
+                                          type="phone"
+                                          style={{ color: 'rgba(0,0,0,.25)' }}
+                                        />
+                                      }
                                       placeholder="Cellphone"
                                       name="cellphone"
                                       onChange={this.onChange}
@@ -488,7 +530,10 @@ class Register extends React.Component {
                                       onBlur={this.validatePhone}
                                       suffix={
                                         <Tooltip title="Enter your phone number">
-                                          <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+                                          <Icon
+                                            type="info-circle"
+                                            style={{ color: 'rgba(0,0,0,.45)' }}
+                                          />
                                         </Tooltip>
                                       }
                                       allowClear={true}
@@ -540,7 +585,7 @@ class Register extends React.Component {
                                 <FormGroup>
                                   <TextArea
                                     placeholder="Company Address*"
-                                    autosize={{ minRows:2, maxRows:6 }}
+                                    autosize={{ minRows: 2, maxRows: 6 }}
                                     name="full_address"
                                     onChange={this.onChange}
                                     onBlur={this.validateAddress}
@@ -555,7 +600,12 @@ class Register extends React.Component {
                                 <FormGroup>
                                   <AntdInput
                                     size="large"
-                                    prefix={<Icon type="environment" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                    prefix={
+                                      <Icon
+                                        type="environment"
+                                        style={{ color: 'rgba(0,0,0,.25)' }}
+                                      />
+                                    }
                                     placeholder="Postal Code"
                                     name="postal_code"
                                     allowClear={true}
@@ -567,9 +617,15 @@ class Register extends React.Component {
 
                             <div className="checkbox c-checkbox mb-3">
                               <label className="text-black-50">
-                                <Input type="checkbox" name="terms" onChange={this.validateTerms}/>
-                                <span className="fa fa-times"></span> I agree with <Link to="/terms">Terms & Conditions</Link></label>
-                              <br/>
+                                <Input
+                                  type="checkbox"
+                                  name="terms"
+                                  onChange={this.validateTerms}
+                                />
+                                <span className="fa fa-times"></span> I agree
+                                with <Link to="/terms">Terms & Conditions</Link>
+                              </label>
+                              <br />
                               <small className="text-danger">
                                 {this.state.terms_error}
                               </small>
@@ -583,38 +639,62 @@ class Register extends React.Component {
                                   type="submit"
                                   disabled={this.state.btnDisable}
                                 >
-                                  <span className="text-light" style={{ fontSize: '16px' }}>Sign Up Now</span>
+                                  <span
+                                    className="text-light"
+                                    style={{ fontSize: '16px' }}
+                                  >
+                                    Sign Up Now
+                                  </span>
                                 </Button>
                               </Col>
                               <Col>
-                                <p className="text-black-50 pull-right">Or you can join with</p>
+                                <p className="text-black-50 pull-right">
+                                  Or you can join with
+                                </p>
                               </Col>
                               <Col>
                                 <div className="icons-list">
                                   <Link to="/signup-google">
-                                    <Icon type="google" style={{ fontSize: '30px', color: '#4285F4' }} className="mr-3"/>
+                                    <Icon
+                                      type="google"
+                                      style={{
+                                        fontSize: '30px',
+                                        color: '#4285F4',
+                                      }}
+                                      className="mr-3"
+                                    />
                                   </Link>
                                   <Link to="/signup-google">
-                                    <Icon type="facebook" style={{ fontSize: '30px', color: '#3b5998' }} className="mr-3"/>
+                                    <Icon
+                                      type="facebook"
+                                      style={{
+                                        fontSize: '30px',
+                                        color: '#3b5998',
+                                      }}
+                                      className="mr-3"
+                                    />
                                   </Link>
                                   <Link to="/signup-google">
-                                    <Icon type="twitter" style={{ fontSize: '30px', color: '#1da1f2' }}/>
+                                    <Icon
+                                      type="twitter"
+                                      style={{
+                                        fontSize: '30px',
+                                        color: '#1da1f2',
+                                      }}
+                                    />
                                   </Link>
                                 </div>
                               </Col>
                             </Row>
-
                           </Form>
                         </Card.Body>
                       </Card>
                       <div className="mt-4 text-center">
-                        <Form.Label className="text-black-50">
-                          Already have an account?&nbsp;&nbsp;<AntdButton ghost type="primary" size="large" href="/login">Get Login</AntdButton>
-                        </Form.Label>
+                        Already have an account?&nbsp;&nbsp;
+                        <Link to="/">Get Login</Link>
                         {this.state.loading && <CircleSpinner />}
                       </div>
                     </Col>
-                    <Col md={2}></Col>
                   </Row>
                 </Card.Body>
               </Card>
@@ -628,14 +708,11 @@ class Register extends React.Component {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  countries: state.app
+  countries: state.app,
 })
 
 const mapDispatchToProps = dispatch => ({
-  SignUp: payload => dispatch(SignUpUser(payload))
+  SignUp: payload => dispatch(SignUpUser(payload)),
 })
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Register)
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

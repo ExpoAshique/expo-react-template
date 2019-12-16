@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const DBCard = ({
+ const DBCard = ({
   xl,
   lg,
   sm,
@@ -38,3 +38,5 @@ export const DBCard = ({
     </div>
   </div>
 )
+
+export default DBCard;

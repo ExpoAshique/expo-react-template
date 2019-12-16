@@ -1,5 +1,5 @@
 import React from 'react'
-import { RootRouter } from './routes'
+import { AppRouter , history} from './routes'
 import store from '../core/store'
 import { Provider } from 'react-redux'
 import { ToastContainer } from 'react-toastify'
@@ -9,10 +9,12 @@ import './container/jsconfig/Vendor'
 import 'antd/dist/antd.css'
 import 'react-toastify/dist/ReactToastify.css'
 
+console.log(history)
+
 const App = () => (
   <Provider store={store}>
     <ToastContainer />
-    <RootRouter />
+    <AppRouter />
   </Provider>
 )
 
