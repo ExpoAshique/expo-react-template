@@ -1,28 +1,31 @@
 import React from 'react'
-import { Row, Table } from 'react-bootstrap'
+// import { Row, Table, Col } from 'react-bootstrap'
 import { PageWrapper } from '../../components'
 import { allTableData } from '../../../expo/redux/actions'
 import { connect } from 'react-redux'
-import { DataTable } from '../../components/common'
+// import { DataTable } from '../../components/common'
+import { Table as AntTable, Card as AntCard } from 'antd'
+import moment from 'moment'
 
 class TableComponent extends React.Component {
   state = {
     count: null,
     data: null,
+    loading: false,
+    page: 1,
+    pageSize: 5,
   }
 
   async componentDidMount() {
     this.getallTableData()
   }
 
-  getallTableData = async (pageNum = 1, page = 10) => {
-    await this.props.allTableData({ pageNum: pageNum, pageSize: page })
-
-    this.setState({
-      data: this.props.table_data.results,
-      count: this.props.table_data.count,
-    })
+  getallTableData = async (page, pageSize) => {
+    this.setState({ loading: true })
+    await this.props.allTableData({ page, pageSize })
+    this.setState({ loading: false })
   }
+
   pageChange = pageNumber => {
     this.allTableData(pageNumber)
   }
@@ -65,35 +68,80 @@ class TableComponent extends React.Component {
       deleteStatus: null,
     })
   }
+  handleTableChange = (pagination, filters, sorter) => {
+    this.getallTableData(pagination.current, pagination.pageSize)
+  }
 
   render() {
-    const heading = ['ID', 'Title', 'DOI', 'Submission Date']
+    // const heading = ['ID', 'Title', 'DOI', 'Submission Date']
+
+    const columns = [
+      {
+        title: 'Title',
+        dataIndex: 'title',
+        key: 'title',
+        render: text => <span>{text}</span>,
+        width: 150,
+      },
+      {
+        title: 'Article ID',
+        dataIndex: 'article_id',
+        key: 'article_id',
+        width: 80,
+      },
+      {
+        title: 'Content Type',
+        dataIndex: 'content_type_name',
+        key: 'content_type_name',
+        ellipsis: true,
+      },
+      {
+        title: 'Grant number',
+        dataIndex: 'grant_number',
+        key: 'grant_number',
+        ellipsis: true,
+      },
+      {
+        title: 'Funder name',
+        dataIndex: 'funder_name',
+        key: 'funder_name',
+        ellipsis: true,
+      },
+      {
+        title: 'Approved date',
+        dataIndex: 'approved_date',
+        key: 'approved_date',
+        ellipsis: true,
+        render: text =>
+          text
+            ? moment(text)
+                .startOf('hour')
+                .fromNow()
+            : 'Not approved yet',
+      },
+    ]
 
     return (
       <PageWrapper>
-        <Row>
-          <div className="table table-responsive table-bordered table-hover col-md-6 mr-auto">
-            {/*<Table>*/}
-            {/*<thead className="thead-dark">*/}
-            {/*<tr>*/}
-            {/*<th scope="col"># ID</th>*/}
-            {/*<th scope="col">Title</th>*/}
-            {/*<th scope="col">Doi</th>*/}
-            {/*<th scope="col">Submission Date</th>*/}
-            {/*</tr>*/}
-            {/*</thead>*/}
-            {/*<tbody>*/}
-            {/*{allTableData && allTableData.map(item => (*/}
-            {/*<tr key={item.id}>*/}
-            {/*<th scope="row">{item.id}</th>*/}
-            {/*<td>{item.title}</td>*/}
-            {/*<td>{item.content_type_name}</td>*/}
-            {/*<td>{item.doi}</td>*/}
-            {/*</tr>*/}
-            {/*))}*/}
-            {/*</tbody>*/}
-            {/*</Table>*/}
+        <AntCard bodyStyle={{ padding: 0 }}>
+          <AntTable
+            columns={columns}
+            dataSource={this.props.table_data.results}
+            loading={this.state.loading}
+            onChange={this.handleTableChange}
+            pagination={{
+              pageSize: this.state.pageSize,
+              total: this.props.table_data.count,
+              style: {
+                float: 'none',
+                textAlign: 'center'
+              }
+            }}
+          />
+        </AntCard>
 
+        {/* <Row>
+          <div className="table table-responsive table-bordered table-hover col-md-6 mr-auto">
             {this.state.data && (
               <DataTable
                 heading={heading}
@@ -140,7 +188,7 @@ class TableComponent extends React.Component {
               </tbody>
             </Table>
           </div>
-        </Row>
+        </Row> */}
       </PageWrapper>
     )
   }
@@ -150,7 +198,7 @@ class TableComponent extends React.Component {
 
 const mapStateToProps = state => ({
   // tasks: state.task.tasks ? state.task.tasks.results : []
-  table_data: state.allTableData ? state.allTableData : [],
+  table_data: state.allTableData ? state.allTableData : {},
 })
 
 const mapDispatchToProps = dispatch => ({

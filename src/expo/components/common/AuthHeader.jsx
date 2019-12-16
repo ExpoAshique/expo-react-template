@@ -50,26 +50,26 @@ class AuthHeader extends React.Component {
 
         {/* START Left navbar */}
         <ul className="navbar-nav mr-auto flex-row">
-          <li className="nav-item">
+          {/* <li className="nav-item"> */}
             {/* Button used to collapse the left sidebar. Only visible on tablet and desktops */}
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a
+            {/* <a
               href="#"
               className="nav-link d-none d-md-block d-lg-block d-xl-block"
               onClick={this.toggleCollapsed}
             >
               <em className="fas fa-bars" />
-            </a>
+            </a> */}
             {/* Button to show/hide the sidebar on mobile. Visible on mobile only. */}
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a
+            {/* <a
               href="#"
               className="nav-link sidebar-toggle d-md-none"
               onClick={this.toggleAside}
             >
               <em className="fas fa-bars" />
-            </a>
-          </li>
+            </a> */}
+          {/* </li> */}
           {/* START User avatar toggle */}
           <li className="nav-item d-none d-md-block">
             {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
